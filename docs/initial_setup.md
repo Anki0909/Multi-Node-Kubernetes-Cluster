@@ -28,9 +28,9 @@ Your Kubernetes control-plane has initialized successfully!
 
 To start using your cluster, you need to run the following as a regular user:
 
-  *mkdir -p $HOME/.kube*  
-  *sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config*  
-  *sudo chown $(id -u):$(id -g) $HOME/.kube/config*  
+  *mkdir -p \$HOME/.kube*  
+  *sudo cp -i /etc/kubernetes/admin.conf \$HOME/.kube/config*  
+  *sudo chown $(id -u):$(id -g) \$HOME/.kube/config*  
 
 Alternatively, if you are the root user, you can run:
 
@@ -43,3 +43,11 @@ Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
 Then you can join any number of worker nodes by running the following on each as root:
 
 *kubeadm join 172.21.235.254:6443 --token 9wz555.2qg8exxfb7m55sf1 --discovery-token-ca-cert-hash sha256:e6253f2343ff808bd5fda809e94e04b31b353bac0e93b6ede0240d824de23cc0*
+
+***
+
+***Update***
+-
+- I intitally tried to setup master node and the worker node in two seperate windows machines with wsl2 installed. This did not worked majorly due to port forwarding issue between wsl2 and Windows OS, I thought it was majorly an issue on the master node side.
+- Next I dual booted my laptop with Ubuntu 24.04 and setup a master node in Ubuntu OS and tried to setup the WSL2 in other machine as worker node. This also did not worked out, and I learned kubectl would not work on Windows OS at all, and it would be best to have all machines on Ubuntu in order to connect multiple machines via kubernetes.
+- Currently, attempting to set up dual boot on a workstation which will be acting as a worker node. Will work on Multi Node cluster on a single machine in the meanwhile.
